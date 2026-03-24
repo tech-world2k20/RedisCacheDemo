@@ -35,13 +35,39 @@ public class UserRepo {
     public User getUserById(String id) {
 
         try {
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("getting from db");
         return users.stream()
                 .filter(s -> s.id().equals(id))
                 .findFirst().orElse(null);
     }
 
+    public User createUser(User user) {
+        User userById = getUserById(user.id());
+        if(userById != null) throw new RuntimeException ("User already exists");
+
+        users.add(user);
+        return user;
+    }
+
+
+    public User deleteUser(String id) {
+        User userById = getUserById(id);
+        if(userById == null) throw new RuntimeException ("User does not exists");
+
+        boolean remove = users.remove(userById);
+        return userById;
+    }
+
+    public User updateUser(User user) {
+        User userById = getUserById(user.id());
+        if(userById != null) throw new RuntimeException ("User already exists");
+
+        users.add(user);
+
+        return user;
+    }
 }
