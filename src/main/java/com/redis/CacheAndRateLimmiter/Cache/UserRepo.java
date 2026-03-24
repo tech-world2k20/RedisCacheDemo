@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class UserRepo {
 
-    private static List<User> users = new ArrayList<>();
+    private static final List<User> users = new ArrayList<>();
     static {
         for (int i = 1; i <= 50; i++) {
             users.add(new User(
