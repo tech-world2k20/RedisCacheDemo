@@ -58,7 +58,7 @@ public class UserRepo {
         User userById = getUserById(id);
         if(userById == null) throw new RuntimeException ("User does not exists");
 
-        boolean remove = users.remove(userById);
+        users.remove(userById);
         return userById;
     }
 
